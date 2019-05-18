@@ -2,6 +2,8 @@ package com.revolut.moneytransfer.config;
 import java.util.HashSet;
 import java.util.Set;
 import javax.ws.rs.core.Application;
+
+import com.revolut.moneytransfer.MyResource;
  
 public class ResourceLoader extends Application{
  
@@ -10,7 +12,7 @@ public class ResourceLoader extends Application{
         final Set<Class<?>> classes = new HashSet<Class<?>>();
         
         // register root resource
-       // classes.add(MyResource.class);
+        classes.add(MyResource.class);
         return classes;
     }
 }
