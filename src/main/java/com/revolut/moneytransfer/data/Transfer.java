@@ -1,11 +1,16 @@
 package com.revolut.moneytransfer.data;
 
-public class Transfer {
+import java.io.Serializable;
+import java.util.Date;
+import java.util.UUID;
+
+public class Transfer implements Serializable{
+	private String id;
 	private Account accountTo;
 	private Account accountFrom;
 	private Double amount;
 	private Branch branch;
-	private Long currentTime;
+	private Long transferTime;
 	
 	public Account getAccountTo() {
 		return accountTo;
@@ -31,12 +36,27 @@ public class Transfer {
 	public void setBranch(Branch branch) {
 		this.branch = branch;
 	}
-	public Long getCurrentTime() {
-		return currentTime;
+	public String getId() {
+		return id;
 	}
-	public void setCurrentTime(Long currentTime) {
-		this.currentTime = currentTime;
+	public void setId(String id) {
+		this.id = id;
 	}
-	
+	public Long getTransferTime() {
+		return transferTime;
+	}
+	public void setTransferTime(Long transferTime) {
+		this.transferTime = transferTime;
+	}
+	public Transfer(Account accountTo, Account accountFrom, Double amount, Branch branch) {
+		super();
+		this.id = UUID.randomUUID().toString();
+		this.accountTo = accountTo;
+		this.accountFrom = accountFrom;
+		this.amount = amount;
+		this.branch = branch;
+		this.transferTime = new Date().getTime();
+	}
+
 	
 }

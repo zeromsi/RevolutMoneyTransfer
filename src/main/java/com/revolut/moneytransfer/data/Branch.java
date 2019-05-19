@@ -1,25 +1,34 @@
 package com.revolut.moneytransfer.data;
 
-public class Branch {
-	private String branchId;
-	private String branchName;
+import java.io.Serializable;
 
-	public String getBranchId() {
-		return branchId;
+public class Branch implements Serializable {
+	private String id;
+	private String name;
+	public String getId() {
+		return id;
 	}
-	public void setBranchId(String branchId) {
-		this.branchId = branchId;
+	public void setId(String id) {
+		this.id = id;
 	}
-	public String getBranchName() {
-		return branchName;
+	public String getName() {
+		return name;
 	}
-	public void setBranchName(String branchName) {
-		this.branchName = branchName;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public Branch(String branchId, String branchName) {
+	public Branch(String id, String name) {
 		super();
-		this.branchId = branchId;
-		this.branchName = branchName;
+		this.id = id;
+		this.name = name;
 	}
+	public Branch(String id) {
+		super();
+		this.id = id;
+	}
+	public Branch() {
+		// TODO Auto-generated constructor stub
+	}
+
 
 }
