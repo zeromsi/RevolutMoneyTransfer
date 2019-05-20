@@ -22,13 +22,7 @@ public class Branch implements Serializable {
 		this.id = id;
 		this.name = name;
 	}
-	public Branch(String id) {
-		super();
-		this.id = id;
-	}
-	public Branch() {
-		// TODO Auto-generated constructor stub
-	}
+
 
 
 }

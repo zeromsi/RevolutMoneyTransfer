@@ -5,15 +5,16 @@ import com.revolut.moneytransfer.data.Account;
 public class AccountRepository {
 
 	public Account findById(String id) {
-		return DataStore.findAccountById(id);
+		return DataStore.accounts.stream().filter(account -> id.equals(account.getId())).findAny().orElse(null);
 	}
 
-	public boolean deductAmount(String id, Double amount) {
-		// TODO Auto-generated method stub
+	synchronized public void deductAmount(String id, Double amount) throws Exception {
+			DataStore.accounts.stream().filter(account -> id.equals(account.getId())).findAny().get()
+					.deductAmount(amount);
 	}
 
-	public boolean addAmount(String id, Double amount) {
-		// TODO Auto-generated method stub
-		
+	synchronized public void addAmount(String id, Double amount) throws Exception {
+			DataStore.accounts.stream().filter(account -> id.equals(account.getId())).findAny().get()
+					.addAmount(amount);
 	}
 }
