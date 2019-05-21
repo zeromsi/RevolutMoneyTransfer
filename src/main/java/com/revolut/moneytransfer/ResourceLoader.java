@@ -1,4 +1,4 @@
-package com.revolut.moneytransfer.config;
+package com.revolut.moneytransfer;
 import java.util.HashSet;
 import java.util.Set;
 

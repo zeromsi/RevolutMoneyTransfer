@@ -3,7 +3,8 @@ package com.revolut.moneytransfer.data;
 import java.io.Serializable;
 import java.util.Date;
 
-import com.revolut.moneytransfer.common.ExceptionMessage;
+import com.revolut.moneytransfer.common.ExceptionType;
+
 public class Account implements Serializable {
 	private String id;
 	private Double balance;
@@ -78,8 +79,7 @@ public class Account implements Serializable {
 		this.lastUpdatedBy = lastUpdatedBy;
 	}
 
-	public Account(String id, Double balance, String ownersName, Long dob,  String createdBy,
-		 String lastUpdatedBy) {
+	public Account(String id, Double balance, String ownersName, Long dob, String createdBy, String lastUpdatedBy) {
 		super();
 		this.id = id;
 		this.balance = balance;
@@ -90,28 +90,27 @@ public class Account implements Serializable {
 		this.lastUpdatedAt = new Date().getTime();
 		this.lastUpdatedBy = lastUpdatedBy;
 	}
-	
 
 	public boolean checkBalanceAvailability(Double amount) {
-		if(this.getBalance()<amount) {
+		if (this.getBalance() < amount) {
 			return false;
-		}else {
+		} else {
 			return true;
 		}
-		
+
 	}
 
-	public void deductAmount(Double amount) throws Exception {
-		if(checkBalanceAvailability(amount)) {
-		this.setBalance(this.getBalance()-amount);
-		return;
-		}else {
-			throw new Exception(ExceptionMessage.INSUFFICIENT_AMOUNT_EXCEPTION.getValue());
+	synchronized public void deductAmount(Double amount) throws Exception {
+		if (checkBalanceAvailability(amount)) {
+			this.setBalance(this.getBalance() - amount);
+			return;
+		} else {
+			throw new Exception(ExceptionType.INSUFFICIENT_AMOUNT_EXCEPTION.getValue());
 		}
 	}
 
-	public void addAmount(Double amount) throws Exception{
-		this.setBalance(this.getBalance()+amount);
+	synchronized public void addAmount(Double amount) {
+		this.setBalance(this.getBalance() + amount);
 	}
 
 }

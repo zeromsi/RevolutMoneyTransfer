@@ -5,7 +5,7 @@ import javax.inject.Inject;
 
 import com.revolut.moneytransfer.business.TransferVM;
 import com.revolut.moneytransfer.business.bean.TransferBean;
-import com.revolut.moneytransfer.common.ExceptionMessage;
+import com.revolut.moneytransfer.common.ExceptionType;
 import com.revolut.moneytransfer.data.Account;
 import com.revolut.moneytransfer.data.Branch;
 import com.revolut.moneytransfer.data.repository.AccountRepository;
@@ -42,9 +42,9 @@ public class TransferBeanImplementation implements TransferBean {
 					}
 				}
 
-			throw new Exception(ExceptionMessage.INVALID_BRANCH_EXCEPTION.getValue());
+			throw new Exception(ExceptionType.INVALID_BRANCH_EXCEPTION.getValue());
 		}
-		throw new Exception(ExceptionMessage.INVALID_ACCOUNT_EXCEPTION.getValue());
+		throw new Exception(ExceptionType.INVALID_ACCOUNT_EXCEPTION.getValue());
 
 	}
 

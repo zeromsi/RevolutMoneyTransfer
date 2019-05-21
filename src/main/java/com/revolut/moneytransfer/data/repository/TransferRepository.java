@@ -6,7 +6,7 @@ import com.revolut.moneytransfer.data.Transfer;
 
 public class TransferRepository {
 
-	public void transfer(Account accountTo, Account accountFrom, Double amount, Branch branch) throws Exception{
+	public void transfer(Account accountTo, Account accountFrom, Double amount, Branch branch) {
 		DataStore.transfers.add(new Transfer(accountTo, accountFrom, amount, branch));
 	}
 }
