@@ -1,8 +1,6 @@
 package com.revolut.moneytransfer.business;
 
-import java.io.Serializable;
-
-public class TransferVM implements Serializable{
+public class TransferVM{
 	private String accountTo;
 	private String accountFrom;
 	private Double amount;

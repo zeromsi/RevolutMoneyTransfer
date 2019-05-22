@@ -1,7 +1,6 @@
 package com.revolut.moneytransfer.business.bean.implementation;
 
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 
 import com.revolut.moneytransfer.business.TransferVM;
 import com.revolut.moneytransfer.business.bean.TransferBean;
@@ -19,7 +18,6 @@ public class TransferBeanImplementation implements TransferBean {
 	AccountRepository accountRepository;
 	BranchRepository branchRepository;
 
-	@Inject
 	public TransferBeanImplementation() {
 		super();
 		this.transferRepository = new TransferRepository();
@@ -32,19 +30,15 @@ public class TransferBeanImplementation implements TransferBean {
 		Account accountFrom = accountRepository.findById(transfer.getAccountFrom());
 		Account accountTo = accountRepository.findById(transfer.getAccountTo());
 		Branch branch = branchRepository.findById(transfer.getBranch());
-		if (accountFrom != null && accountTo != null) {
-			if (branch != null) {
-					synchronized (this) {
-						accountRepository.deductAmount(accountFrom.getId(), transfer.getAmount());
-						accountRepository.addAmount(accountTo.getId(), transfer.getAmount());
-						transferRepository.transfer(accountTo, accountFrom, transfer.getAmount(), branch);
-						return;
-					}
-				}
-
+		if (accountFrom == null || accountTo == null)
+			throw new Exception(ExceptionType.INVALID_ACCOUNT_EXCEPTION.getValue());
+		if (branch == null)
 			throw new Exception(ExceptionType.INVALID_BRANCH_EXCEPTION.getValue());
+		synchronized (this) {
+			accountRepository.deductAmount(accountFrom.getId(), transfer.getAmount());
 		}
-		throw new Exception(ExceptionType.INVALID_ACCOUNT_EXCEPTION.getValue());
+		accountRepository.addAmount(accountTo.getId(), transfer.getAmount());
+		transferRepository.transfer(accountTo, accountFrom, transfer.getAmount(), branch);
 
 	}
 

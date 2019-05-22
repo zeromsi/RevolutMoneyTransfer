@@ -55,7 +55,7 @@ public class AccountRepositoryTest {
 	}
 	
 	@Test
-	public void givenAmount_whenCallingAddMountIfAmountGotAdded_thenTrue() {
+	public void givenAmount_whenCallingAddMountIfAmountGotAdded_thenTrue() throws Exception {
 		Double expectedValue=accountRepository.findById("00123").getBalance()+500;
 		accountRepository.addAmount("00123",500.00);
 		assertEquals("fail: Should return true",expectedValue,accountRepository.findById("00123").getBalance());

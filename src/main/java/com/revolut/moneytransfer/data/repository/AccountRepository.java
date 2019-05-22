@@ -8,13 +8,14 @@ public class AccountRepository {
 		return DataStore.accounts.stream().filter(account -> id.equals(account.getId())).findAny().orElse(null);
 	}
 
-	 public void deductAmount(String id, Double amount) throws Exception {
+	public void deductAmount(String id, Double amount) throws Exception {
 			DataStore.accounts.stream().filter(account -> id.equals(account.getId())).findAny().get()
 					.deductAmount(amount);
 	}
 
-	 public void addAmount(String id, Double amount){
-			DataStore.accounts.stream().filter(account -> id.equals(account.getId())).findAny().get()
-					.addAmount(amount);
+	public void addAmount(String id, Double amount) {
+
+		DataStore.accounts.stream().filter(account -> id.equals(account.getId())).findAny().get().addAmount(amount);
+
 	}
 }

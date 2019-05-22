@@ -10,6 +10,7 @@ import org.junit.Test;
 import com.revolut.moneytransfer.common.ExceptionType;
 import com.revolut.moneytransfer.data.Account;
 
+
 public class AccountTest {
 	Account account;
 

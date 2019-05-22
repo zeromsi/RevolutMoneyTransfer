@@ -31,7 +31,7 @@ public class TransferRepositoryTest {
 	
 
 	@Test
-	public void givenValidData_whenCallingTranhsferIfRecordGotAdded_thenTrue() {
+	public void givenValidData_whenCallingTranhsferIfRecordGotAdded_thenTrue() throws Exception {
 		int previousSize=DataStore.transfers.size();
 		transferRepository.transfer(DataStore.accounts.get(0), DataStore.accounts.get(1), 50.00, DataStore.branches.get(0));
 		int currentSize=DataStore.transfers.size();
