@@ -16,16 +16,18 @@ Body:
 	"amount":50.00
 }
 ```
-Status: 
+### Server Responses
 
-Code: ```202```
-Reason: ```Accepted```
+```xml 
+Code: 202 
+Reason: Accepted 
 Response:
+```
 
-
-Code: ```400```
-Reason: ```Bad Request[Invalid Account Number]```
-Response: ```xml 
+```xml 
+Code: 400 
+Reason: Bad Request[Invalid Account Number]
+Response:
 {
     "path": "/transfers",
     "error": "Bad Request",
@@ -35,10 +37,10 @@ Response: ```xml
 }
 ```
 
-
-Code: ```400```
-Reason: ```Bad Request[Invalid Branch]```
-Response: ```xml 
+```xml 
+Code: 400
+Reason: Bad Request[Invalid Branch]
+Response:
 {
     "path": "/transfers",
     "error": "Bad Request",
@@ -48,10 +50,10 @@ Response: ```xml
 }
 ```
 
-
-Code: ```406```
-Reason: ```Not Acceptable[Insufficient Amount]```
-Response: ```xml 
+```xml 
+Code: 406
+Reason: Not Acceptable[Insufficient Amount]
+Response: 
 {
     "path": "/transfers",
     "error": "Not Acceptable",
@@ -60,7 +62,6 @@ Response: ```xml
     "status": "406"
 }
 ```
-
 
 ## Class Diagram
 ![class diagram](https://github.com/zeromsi/RevolutMoneyTransfer/blob/master/documentation/classDiagram.png)
