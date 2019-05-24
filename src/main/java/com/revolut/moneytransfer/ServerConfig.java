@@ -36,8 +36,4 @@ public class ServerConfig {
 		DataStore.init();
 	}
 
-	private ServletContainer resourceConfig() {
-		return new ServletContainer(new ResourceConfig(new ResourceLoader().getClasses()));
-	}
-
 }
